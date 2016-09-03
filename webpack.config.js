@@ -40,14 +40,6 @@ module.exports = {
     ]
   },
 
-  // loaders config
-  vue: {
-    loaders: {
-      // sass: ExtractTextPlugin.extract('css!postcss!sass'),
-      // scss: ExtractTextPlugin.extract('css!postcss!sass'),
-      // css: ExtractTextPlugin.extract('css!postcss')
-    }
-  },
   babel: {
     presets: ['es2015'],
     plugins: ['transform-runtime']

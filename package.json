@@ -4,8 +4,8 @@
   "description": "vue seed",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot",
-    "build": "webpack",
+    "dev": "gulp dev",
+    "build": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -42,10 +42,11 @@
     "eslint-plugin-html": "^1.4.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-imagemin": "~2.4.0",
     "gulp-jshint": "^2.0.0",
     "gulp-notify": "^2.2.0",
+    "gulp-sequence": "^0.4.6",
     "html-loader": "^0.4.0",
     "html-webpack-plugin": "^2.7.2",
     "map-stream": "0.0.6",
@@ -57,6 +58,7 @@
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
+    "vue-hot-reload-api": "^2.0.6",
     "vue-html-loader": "^1.1.0",
     "vue-loader": "^8.0.1",
     "vue-style-loader": "^1.0.0",

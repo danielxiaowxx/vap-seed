@@ -11,4 +11,8 @@
 
 ## TODO
 
-1. 编译的时候把VUE库独立出来，不要编译进bundle.js里面
+~~1. 编译的时候把VUE库独立出来，不要编译进bundle.js里面~~
+
+2.VUE框架缓存
+
+3.watch，增量build和reload
