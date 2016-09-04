@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var gulpSequence = require('gulp-sequence')
+var gulpSequence = require('gulp-sequence');
 var rm = require('rimraf');
 var webpack = require('webpack');
 var notify = require('gulp-notify');
@@ -40,7 +40,7 @@ gulp.task('static', () => {
 });
 
 gulp.task('clean', next => {
-  rm(config.dest, function() {
+  rm(config.dest, function () {
     next();
   });
 });
@@ -51,13 +51,36 @@ gulp.task('watch', () => {
 });
 
 gulp.task('dev-server', () => {
-  browserSync.init({
-    server: './dist',
-    index: 'index.html',
-    port: 3000,
-    logLevel: 'debug',
-    logPrefix: 'VA',
-    open: true
+
+  function startServer() {
+    delete require.cache[require.resolve('./mock/data')];
+    var mockConfig = require('./mock/data');
+    browserSync.init({
+      server: './dist',
+      index: 'index.html',
+      port: 3000,
+      logLevel: 'debug',
+      logPrefix: 'VA',
+      open: true,
+      middleware: Object.keys(mockConfig).map(route => {
+        return {
+          route: route,
+          handle: function (req, res) {
+            var resData = typeof mockConfig[route] === 'function' ? mockConfig[route]() : mockConfig[route];
+            res.write(typeof resData === 'string' ? resData : JSON.stringify(resData));
+            res.end();
+            return;
+          }
+        }
+      })
+    });
+  }
+
+  startServer();
+
+  gulp.watch('./mock/data.js').on('change', () => {
+    browserSync.exit();
+    startServer();
   });
 });
 
