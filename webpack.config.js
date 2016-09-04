@@ -1,13 +1,18 @@
 var path = require('path');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var webpack = require('webpack');
+var postcssSprites = require('postcss-sprites');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // webpack.config.js
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    app: './src/index.js',
+    vendor: ['vue', 'vue-resource'],
+  },
 
   output: {
-    path: './dist',
-    filename: 'bundle.js'
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].js',
   },
 
   module: {
@@ -49,18 +54,24 @@ module.exports = {
       scss: ExtractTextPlugin.extract('css!postcss!sass'),
       css: ExtractTextPlugin.extract('css!postcss'),
       js: 'babel!eslint'
-    }
+    },
   },
   babel: {
     presets: ['es2015'],
     plugins: ['transform-runtime']
   },
 
-  externals: {
-    'vue': 'Vue'
-  },
-
   plugins: [
-    new ExtractTextPlugin("style.css")
+    new ExtractTextPlugin("style.css"),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor",
+      filename: "vendor.js",
+      minChunks: Infinity
+    })
   ]
 };

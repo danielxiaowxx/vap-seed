@@ -9,8 +9,7 @@ var webpackConfig = require('./webpack.config');
 
 var config = {
   src: './src',
-  dest: './dist',
-  framework: ['./node_modules/vue/dist/vue.min.js'],
+  dest: './dist'
 };
 
 var reload = browserSync.reload;
@@ -34,8 +33,8 @@ gulp.task('webpack', done => {
   });
 });
 
-gulp.task('static', () => {
-  return gulp.src([config.src + '/index.html'].concat(config.framework))
+gulp.task('index-html', () => {
+  return gulp.src(config.src + '/index.html')
     .pipe(gulp.dest(config.dest));
 });
 
@@ -47,7 +46,7 @@ gulp.task('clean', next => {
 
 gulp.task('watch', () => {
   gulp.watch(config.src + '/**/*.*', ['webpack']).on('change', reload);
-  gulp.watch(config.src + '/index.html', ['static']).on('change', reload);
+  gulp.watch(config.src + '/index.html', ['index-html']).on('change', reload);
 });
 
 gulp.task('dev-server', () => {
@@ -84,7 +83,7 @@ gulp.task('dev-server', () => {
   });
 });
 
-gulp.task('build', gulpSequence('clean', ['webpack', 'static']));
+gulp.task('build', gulpSequence('clean', ['webpack', 'index-html']));
 
 gulp.task('dev', gulpSequence('build', ['dev-server', 'watch']));
 

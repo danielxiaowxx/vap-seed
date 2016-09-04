@@ -14,8 +14,8 @@
     }
 </script>
 
-<style>
+<style lang="sass">
+    @import "../assets/styles/reset.css";
     .app {
-
     }
 </style>
