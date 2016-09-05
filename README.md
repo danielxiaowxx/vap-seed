@@ -1,7 +1,21 @@
 
 ## 如何初始化一个项目
 
+```
+yo ac
+```
+
+## 如何开发
+
+```
+npm run dev
+```
+
 ## 如何增加一个component
+
+```
+yo ac:comp hello
+```
 
 ## Mock数据
 
