@@ -59,6 +59,7 @@ npm run release
 
 2. 图片的修改采用更换名字的策略
 
+3. 引入第三方组件或工具库时，需要声明在`webpack.config.dev.js`的`entry.vendor`数组里
 
 ## TODO
 

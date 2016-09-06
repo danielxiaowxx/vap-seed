@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var path = require('path');
 var rm = require('rimraf');
+var zip = require('gulp-zip');
 var webpack = require('webpack');
 var notify = require('gulp-notify');
 var gulpSequence = require('gulp-sequence');
@@ -76,6 +77,13 @@ gulp.task('serve', () => {
     browserSync.exit();
     startServer();
   });
+});
+
+gulp.task('zip', () => {
+  var package = require('./package.json');
+  return gulp.src(config.dist + '/*')
+    .pipe(zip(package.name + '.zip'))
+    .pipe(gulp.dest(config.dist));
 });
 
 gulp.task('build', gulpSequence('clean', ['webpack']));
