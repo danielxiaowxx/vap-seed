@@ -1,16 +1,14 @@
 var gulp = require('gulp');
+var path = require('path');
 var gulpSequence = require('gulp-sequence');
 var rm = require('rimraf');
 var webpack = require('webpack');
 var notify = require('gulp-notify');
 var browserSync = require('browser-sync').create();
 
-var webpackConfig = require('./webpack.config');
+var config = require('./conf/config');
+var webpackConfig = require('./conf/webpack.config');
 
-var config = {
-  src: './src',
-  dest: './dist'
-};
 
 var reload = browserSync.reload;
 
@@ -33,20 +31,13 @@ gulp.task('webpack', done => {
   });
 });
 
-gulp.task('index-html', () => {
-  return gulp.src(config.src + '/index.html')
-    .pipe(gulp.dest(config.dest));
-});
 
 gulp.task('clean', next => {
-  rm(config.dest, function () {
-    next();
-  });
+  rm(config.dist, () => next());
 });
 
 gulp.task('watch', () => {
-  gulp.watch(config.src + '/**/*.*', ['webpack']).on('change', reload);
-  gulp.watch(config.src + '/index.html', ['index-html']).on('change', reload);
+  gulp.watch([path.join(config.src, '**/*.*'), path.join(config.src, 'index.html')], ['webpack']).on('change', reload);
 });
 
 gulp.task('dev-server', () => {
@@ -64,7 +55,7 @@ gulp.task('dev-server', () => {
       middleware: Object.keys(mockConfig).map(route => {
         return {
           route: route,
-          handle: function (req, res) {
+          handle: (req, res) => {
             var resData = typeof mockConfig[route] === 'function' ? mockConfig[route]() : mockConfig[route];
             res.write(typeof resData === 'string' ? resData : JSON.stringify(resData));
             res.end();
@@ -77,13 +68,13 @@ gulp.task('dev-server', () => {
 
   startServer();
 
-  gulp.watch('./mock/data.js').on('change', () => {
+  gulp.watch(path.join(config.root, 'mock/data.js')).on('change', () => {
     browserSync.exit();
     startServer();
   });
 });
 
-gulp.task('build', gulpSequence('clean', ['webpack', 'index-html']));
+gulp.task('build', gulpSequence('clean', ['webpack']));
 
 gulp.task('dev', gulpSequence('build', ['dev-server', 'watch']));
 

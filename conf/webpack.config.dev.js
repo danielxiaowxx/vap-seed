@@ -2,16 +2,19 @@ var path = require('path');
 var webpack = require('webpack');
 var postcssSprites = require('postcss-sprites');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+var config = require('./config');
 
 // webpack.config.js
 module.exports = {
   entry: {
-    app: './src/index.js',
+    app: path.join(config.src, 'index.js'),
     vendor: ['vue', 'vue-resource'],
   },
 
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: config.dist,
     filename: '[name].js',
   },
 
@@ -20,16 +23,12 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue',
-        include: [
-          path.resolve(__dirname, "src")
-        ]
+        include: [config.src]
       },
       {
         test: /\.js$/,
         loader: 'babel!eslint',
-        include: [
-          path.resolve(__dirname, "src")
-        ]
+        include: [config.src]
       },
       {
         // edit this for additional asset file types
@@ -39,11 +38,9 @@ module.exports = {
           // inline files smaller then 10kb as base64 dataURL
           limit: 10000,
           // fallback to file-loader with this naming scheme
-          name: 'img/[name].[ext]?[hash]'
+          name: 'img/[name].[ext]'
         },
-        include: [
-          path.resolve(__dirname, "src")
-        ]
+        include: [config.src]
       }
     ]
   },
@@ -62,16 +59,23 @@ module.exports = {
   },
 
   plugins: [
+    // extract style file
     new ExtractTextPlugin("style.css"),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
+
+    // extract vendor libs
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor",
       filename: "vendor.js",
       minChunks: Infinity
-    })
+    }),
+
+    // handle index.html
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.join(config.src, 'index.html'),
+      inject: true,
+      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunksSortMode: 'dependency'
+    }),
   ]
 };
