@@ -1,8 +1,10 @@
 .hello {
-  color: black;
-  border: 1px solid orange;
-  float: left;
-  border-radius: 4px;
-  display: flex;
-  background: url(../../assets/images/demo1.jpg) no-repeat;
+  color: orange;
+  padding: 8px;
+  background: url("../../assets/images/sprite-icons/demo1.jpg") no-repeat;
+
+  p {
+    margin-bottom: 8px;
+    background: url("../../assets/images/demo2.jpg") no-repeat;
+  }
 }

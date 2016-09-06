@@ -1,9 +1,15 @@
 import Vue from 'vue';
 
-export function getHello(msg) {
-  return Vue.http.get('/api');
+export function getTestName() {
+  return Vue.http.get('/api/test/getName');
 };
 
-export function getTest() {
-  return Vue.http.get('/test');
+export function getTestMsg() {
+  return Vue.http.get('/api/test/getMsg');
 };
+
+
+
+
+
+

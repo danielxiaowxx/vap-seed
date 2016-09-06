@@ -10,11 +10,13 @@ npm i yo -g
 npm i generator-vap -g
 ```
 
+
 ## 如何初始化一个项目
 
 ```
 yo vap
 ```
+
 
 ## 如何开发
 
@@ -22,15 +24,20 @@ yo vap
 npm run dev
 ```
 
+
 ## 如何增加一个component
 
 ```
 yo vap:add-comp [component-name]
 ```
 
-## Mock数据
 
-在`mock/data.js`中可模拟远程API的数据
+## 如何发布
+
+```
+npm run release
+```
+
 
 ## 开发人员的工作流程
 
@@ -38,12 +45,20 @@ yo vap:add-comp [component-name]
 
 2. 修改App.vue，把component显示在页面正确的位置
 
+3. 如需调用远程API，可在`mock/data.js`中增加相应的API路径和模拟数据
+
+
+## 如何处理图标
+
+把需要合成雪碧图（Sprite）的图标都统一放在`src/assets/images/sprite-icons`目录，写样式的时候直接引用该目录的图标即可，运行期间会自动合成雪碧图
+
 
 ## 注意事项
 
 1. 开发过程中chrome要开启no cache模式
 
 2. 图片的修改采用更换名字的策略
+
 
 ## TODO
 

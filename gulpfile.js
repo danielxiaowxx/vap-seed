@@ -1,9 +1,9 @@
 var gulp = require('gulp');
 var path = require('path');
-var gulpSequence = require('gulp-sequence');
 var rm = require('rimraf');
 var webpack = require('webpack');
 var notify = require('gulp-notify');
+var gulpSequence = require('gulp-sequence');
 var browserSync = require('browser-sync').create();
 
 var config = require('./conf/config');
@@ -12,6 +12,7 @@ var webpackConfig = require('./conf/webpack.config');
 
 var reload = browserSync.reload;
 
+/* ====================== functions ====================== */
 
 function handleErrors() {
   var args = Array.prototype.slice.call(arguments);
@@ -22,6 +23,8 @@ function handleErrors() {
   this.emit('end');
 }
 
+/* ====================== gulp tasks ====================== */
+
 gulp.task('webpack', done => {
   webpack(webpackConfig, err => {
     if (err) {
@@ -31,16 +34,17 @@ gulp.task('webpack', done => {
   });
 });
 
-
 gulp.task('clean', next => {
   rm(config.dist, () => next());
 });
 
 gulp.task('watch', () => {
-  gulp.watch([path.join(config.src, '**/*.*'), path.join(config.src, 'index.html')], ['webpack']).on('change', reload);
+  gulp.watch([path.join(config.src, '**/*.*'), path.join(config.src, 'index.html')], () => {
+    gulpSequence('webpack')(err => { !err && reload(); });
+  });
 });
 
-gulp.task('dev-server', () => {
+gulp.task('serve', () => {
 
   function startServer() {
     delete require.cache[require.resolve('./mock/data')];
@@ -76,6 +80,6 @@ gulp.task('dev-server', () => {
 
 gulp.task('build', gulpSequence('clean', ['webpack']));
 
-gulp.task('dev', gulpSequence('build', ['dev-server', 'watch']));
+gulp.task('dev', gulpSequence('build', ['serve', 'watch']));
 
 
