@@ -50,7 +50,7 @@ npm run release
 
 ## 如何处理图标
 
-把需要合成雪碧图（Sprite）的图标都统一放在`src/assets/images/sprite-icons`目录，写样式的时候直接引用该目录的图标即可，运行期间会自动合成雪碧图
+把需要合成雪碧图（Sprite）的图标都统一放在`src/assets/images/sprite-icons`目录，写样式的时候直接引用该目录的图标即可，发布期间会自动合成雪碧图
 
 
 ## 注意事项

@@ -51,18 +51,7 @@ module.exports = {
       scss: ExtractTextPlugin.extract('css!postcss!sass'),
       css: ExtractTextPlugin.extract('css!postcss'),
       js: 'babel!eslint'
-    },
-    postcss: [postcssSprites({
-      stylesheetPath: path.join(config.src, 'a/b'), // 这里为了让编译的时候样式能找到图片的正确路径，无奈，暂不深究
-      spritePath: path.join(config.src, 'assets/images'),
-      relativeTo: true,
-      filterBy: image => {
-        if (image.url.indexOf('sprite-icons') === -1) {
-          return Promise.reject();
-        }
-        return Promise.resolve();
-      }
-    })]
+    }
   },
   babel: {
     presets: ['es2015'],
