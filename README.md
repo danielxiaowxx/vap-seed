@@ -77,3 +77,5 @@ npm run release
 7.错误日志
 
 8.font资源文件指纹
+
+9.图片压缩
