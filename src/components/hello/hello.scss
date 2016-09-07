@@ -1,10 +1,35 @@
 .hello {
-  color: orange;
+
+  @mixin icon($w, $h) {
+    width: $w;
+    height: $h;
+    display: inline-block;
+    background-repeat: no-repeat;
+  }
+
   padding: 8px;
-  background: url("../../assets/images/sprite-icons/demo1.jpg") no-repeat;
+
+  .logo {
+    width: 400px;
+    height: 400px;
+    background: url('../../assets/images/logo.png') no-repeat;
+  }
+
+  .icon-1 {
+    background-image: url('../../assets/images/sprite-icons/icon1.gif');
+    @include icon(128, 127);
+  }
+
+  .icon-2 {
+    background-image: url('../../assets/images/sprite-icons/icon2.gif');
+    @include icon(128, 128);
+  }
+
+  .text-warn {
+    color: orange;
+  }
 
   p {
     margin-bottom: 8px;
-    background: url("../../assets/images/demo2.jpg") no-repeat;
   }
 }
