@@ -61,6 +61,7 @@ npm run release
 
 3. 引入第三方组件或工具库时，需要声明在`webpack.config.dev.js`的`entry.vendor`数组里
 
+
 ## TODO
 
 ~~1. 编译的时候把VUE库独立出来，不要编译进bundle.js里面~~
@@ -80,3 +81,5 @@ npm run release
 8.font资源文件指纹
 
 9.图片压缩
+
+10.sourcemap

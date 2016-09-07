@@ -81,7 +81,7 @@ gulp.task('serve', () => {
 
 gulp.task('zip', () => {
   var package = require('./package.json');
-  return gulp.src(config.dist + '/*')
+  return gulp.src(config.dist + '/**/*')
     .pipe(zip(package.name + '.zip'))
     .pipe(gulp.dest(config.dist));
 });
