@@ -7,6 +7,7 @@
     height: $h;
     display: inline-block;
     background-repeat: no-repeat;
+    background-size: 100% 100%;
   }
 
   padding: rem(8px);
@@ -15,6 +16,7 @@
     width: rem(400px);
     height: rem(400px);
     background: url('../../assets/images/logo.png') no-repeat;
+    background-size: 100% 100%;
   }
 
   .icon-1 {
