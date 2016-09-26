@@ -28,7 +28,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel!eslint',
-        include: [config.src]
+        include: [config.src].concat(config.babelModules)
       },
       {
         // edit this for additional asset file types
@@ -54,7 +54,7 @@ module.exports = {
     }
   },
   babel: {
-    presets: ['es2015'],
+    presets: ['latest'],
     plugins: ['transform-runtime']
   },
 

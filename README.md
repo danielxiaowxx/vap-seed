@@ -59,7 +59,7 @@ npm run release
 
 2. 图片的修改采用更换名字的策略
 
-3. 引入第三方组件或工具库时，需要声明在`webpack.config.dev.js`的`entry.vendor`数组里
+3. 引入第三方组件或工具库时，如果想合并进verdor.js而不是app.js，则需要声明在`webpack.config.dev.js`的`entry.vendor`数组里
 
 
 ## TODO
@@ -74,12 +74,12 @@ npm run release
 
 5.hot reload
 
-6.打点日志
+~~6.打点日志~~
 
 7.错误日志
 
 8.font资源文件指纹
 
-9.图片压缩
+~~9.图片压缩~~
 
 10.sourcemap

@@ -1,3 +1,5 @@
+@import "../../assets/styles/utils.scss";
+
 .hello {
 
   @mixin icon($w, $h) {
@@ -7,22 +9,22 @@
     background-repeat: no-repeat;
   }
 
-  padding: 8px;
+  padding: rem(8px);
 
   .logo {
-    width: 400px;
-    height: 400px;
+    width: rem(400px);
+    height: rem(400px);
     background: url('../../assets/images/logo.png') no-repeat;
   }
 
   .icon-1 {
     background-image: url('../../assets/images/sprite-icons/icon1.gif');
-    @include icon(128, 127);
+    @include icon(rem(128px), rem(127px));
   }
 
   .icon-2 {
     background-image: url('../../assets/images/sprite-icons/icon2.gif');
-    @include icon(128, 128);
+    @include icon(rem(128px), rem(128px));
   }
 
   .text-warn {
@@ -30,6 +32,6 @@
   }
 
   p {
-    margin-bottom: 8px;
+    margin-bottom: rem(8px);
   }
 }

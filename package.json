@@ -1,7 +1,7 @@
 {
   "name": "vap-seed",
-  "version": "0.0.1",
-  "description": "vue seed",
+  "version": "0.0.2",
+  "description": "Activity project with Vue",
   "main": "index.js",
   "scripts": {
     "dev": "gulp dev",
@@ -10,21 +10,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danielxiaowxx/vue-seed.git"
+    "url": "git+https://github.com/danielxiaowxx/vap-seed.git"
   },
   "keywords": [
+    "activity",
     "vue",
     "seed"
   ],
   "author": "Daniel.Xiao",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/danielxiaowxx/vue-seed/issues"
+    "url": "https://github.com/danielxiaowxx/vap-seed/issues"
   },
-  "homepage": "https://github.com/danielxiaowxx/vue-seed#readme",
+  "homepage": "https://github.com/danielxiaowxx/vap-seed#readme",
   "dependencies": {
     "vue": "^1.0.26",
-    "vue-resource": "^0.9.3"
+    "vue-resource": "^0.9.3",
+    "va-commonjs": "git+http://daniel.xiao@gitlab.tools.vipshop.com/daniel.xiao/va-commonjs.git"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.2",
@@ -33,6 +35,7 @@
     "babel-loader": "^6.2.1",
     "babel-plugin-transform-runtime": "^6.3.13",
     "babel-preset-es2015": "^6.3.13",
+    "babel-preset-latest": "^6.14.0",
     "babel-runtime": "^6.3.19",
     "browser-sync": "^2.9.1",
     "concat": "^1.0.0",
@@ -47,10 +50,12 @@
     "gulp-imagemin": "~2.4.0",
     "gulp-jshint": "^2.0.0",
     "gulp-notify": "^2.2.0",
+    "gulp-replace": "^0.5.4",
     "gulp-sequence": "^0.4.6",
     "gulp-zip": "^3.2.0",
     "html-loader": "^0.4.0",
     "html-webpack-plugin": "^2.22.0",
+    "imagemin-webpack-plugin": "^1.1.0",
     "map-stream": "0.0.6",
     "node-libs-browser": "^1.0.0",
     "node-sass": "^3.3.2",

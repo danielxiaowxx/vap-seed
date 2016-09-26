@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var postcssSprites = require('postcss-sprites');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ImageminPlugin = require('imagemin-webpack-plugin').default
 
 var config = require('./config');
 
@@ -67,5 +68,22 @@ module.exports = {
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
     }),
+
+    new ImageminPlugin({
+      disable: false,
+      optipng: {
+        optimizationLevel: 3
+      },
+      gifsicle: {
+        optimizationLevel: 1
+      },
+      jpegtran: {
+        progressive: false
+      },
+      svgo: {
+      },
+      pngquant: null, // pngquant is not run unless you pass options here
+      plugins: []
+    })
   ]
 };

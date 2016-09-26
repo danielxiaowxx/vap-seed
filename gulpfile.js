@@ -1,9 +1,12 @@
 var gulp = require('gulp');
 var path = require('path');
 var rm = require('rimraf');
+var qs = require('querystring');
+var url = require('url');
 var zip = require('gulp-zip');
 var webpack = require('webpack');
 var notify = require('gulp-notify');
+var replace = require('gulp-replace');
 var gulpSequence = require('gulp-sequence');
 var browserSync = require('browser-sync').create();
 
@@ -29,6 +32,7 @@ function handleErrors() {
 gulp.task('webpack', done => {
   webpack(webpackConfig, err => {
     if (err) {
+      console.error(err);
       handleErrors();
     }
     done();
@@ -61,8 +65,20 @@ gulp.task('serve', () => {
         return {
           route: route,
           handle: (req, res) => {
+
+            var resResult = '';
             var resData = typeof mockConfig[route] === 'function' ? mockConfig[route]() : mockConfig[route];
-            res.write(typeof resData === 'string' ? resData : JSON.stringify(resData));
+            resResult = typeof resData === 'string' ? resData : JSON.stringify(resData);
+
+            // 判断是否JSONP
+            var urlObj = url.parse(req.url);
+            var qsObj = qs.parse(urlObj.query);
+            
+            if (qsObj.callback) {
+              resResult = `${qsObj.callback}(${resResult})`;
+            }
+
+            res.write(resResult);
             res.end();
             return;
           }
@@ -82,6 +98,8 @@ gulp.task('serve', () => {
 gulp.task('zip', () => {
   var package = require('./package.json');
   return gulp.src(config.dist + '/**/*')
+    .pipe(replace(/([a-z\.0-9]+\.(js|css))/g, 'http://viva.vipstatic.com/uploadfiles/viva-act-static/' + package.name + '/$1')) // 替换JS/CSS路径
+    .pipe(replace(/img\/([a-zA-Z0-9\-_]+\.(jpg|png|gif|jpeg))/g, 'http://viva.vipstatic.com/uploadfiles/viva-act-static/' + package.name + 'img/$1')) // 替换图片路径
     .pipe(zip(package.name + '.zip'))
     .pipe(gulp.dest(config.dist));
 });
@@ -89,5 +107,3 @@ gulp.task('zip', () => {
 gulp.task('build', gulpSequence('clean', ['webpack']));
 
 gulp.task('dev', gulpSequence('build', ['serve', 'watch']));
-
-
