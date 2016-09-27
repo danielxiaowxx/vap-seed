@@ -26,6 +26,7 @@
   "dependencies": {
     "vue": "^1.0.26",
     "vue-resource": "^0.9.3",
+    "lodash-es": "^4.16.2",
     "va-commonjs": "git+http://daniel.xiao@gitlab.tools.vipshop.com/daniel.xiao/va-commonjs.git"
   },
   "devDependencies": {

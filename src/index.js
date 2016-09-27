@@ -15,3 +15,7 @@ new Vue({
     app: App
   }
 });
+
+window.onerror = err => {
+  console.error(err); // TODO Daniel: 将错误日志回传服务器
+}

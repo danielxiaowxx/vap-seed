@@ -62,6 +62,14 @@ npm run release
 3. 引入第三方组件或工具库时，如果想合并进verdor.js而不是app.js，则需要声明在`webpack.config.dev.js`的`entry.vendor`数组里
 
 
+## 常用工具库
+
+项目使用了lodash这个最受欢迎的工具库，在使用其方法时，请按需依赖，如：
+
+```
+import _assign from 'lodash-es/assign';
+```
+
 ## TODO
 
 ~~1. 编译的时候把VUE库独立出来，不要编译进bundle.js里面~~
