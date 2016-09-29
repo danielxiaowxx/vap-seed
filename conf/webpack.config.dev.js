@@ -23,7 +23,7 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue',
-        include: [config.src]
+        include: [config.src].concat(config.vueModules)
       },
       {
         test: /\.js$/,
