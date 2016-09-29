@@ -28,7 +28,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel!eslint',
-        include: [config.src].concat(config.babelModules)
+        include: [config.src].concat(config.babelModules).concat(config.vueModules)
       },
       {
         // edit this for additional asset file types
