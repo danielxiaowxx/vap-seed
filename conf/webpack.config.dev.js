@@ -40,7 +40,7 @@ module.exports = {
           // fallback to file-loader with this naming scheme
           name: 'img/[name].[ext]'
         },
-        include: [config.src]
+        include: [config.src].concat(config.vueModules)
       }
     ]
   },
