@@ -18,8 +18,8 @@
 </script>
 
 <style lang="sass">
-    @import "../assets/styles/utils.scss";
-    @import "../assets/styles/normalize.scss";
+    @import "~va-commonstyle/utils.scss";
+    @import "~va-commonstyle/normalize.scss";
 
     /* reset */
     body { 
