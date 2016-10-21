@@ -4,6 +4,7 @@ var rm = require('rimraf');
 var qs = require('querystring');
 var url = require('url');
 var zip = require('gulp-zip');
+var gulpif = require('gulp-if');
 var webpack = require('webpack');
 var notify = require('gulp-notify');
 var replace = require('gulp-replace');
@@ -98,8 +99,15 @@ gulp.task('serve', () => {
 gulp.task('zip', () => {
   var package = require('./package.json');
   return gulp.src(config.dist + '/**/*')
-    .pipe(replace(/([a-z\.0-9]+\.(js|css))/g, 'http://viva.vipstatic.com/uploadfiles/viva-act-static/' + package.name + '/$1')) // 替换JS/CSS路径
-    .pipe(replace(/img\/([a-zA-Z0-9\-_]+\.(jpg|png|gif|jpeg))/g, 'http://viva.vipstatic.com/uploadfiles/viva-act-static/' + package.name + 'img/$1')) // 替换图片路径
+    .pipe(gulpif(file => {                                                                                                                                                                       
+      var fileName = file.path.replace(config.dist + path.sep, '');                                                                                                                              
+      return fileName === 'index.html';                                                                                                                                                          
+    }, replace(/=([a-z\.0-9]+\.(js|css))/g, '=http://viva.vipstatic.com/uploadfiles/viva-act-static/' + package.name + '/$1'))) // 替换JS/CSS路径。只处理index.html。 XXX 请根据实际修改替换的内容                              
+    .pipe(gulpif(file => {                                                                                                                                                                       
+      var fileName = file.path.replace(config.dist + path.sep, '');                                                                                                                              
+      return fileName.match(/^style\.[a-z0-9]{8}\.css/) || fileName.match(/^app\.[a-z0-9]{8}\.js/);                                                                                              
+    }, replace(/img\/([a-zA-Z0-9\-_]+\.(jpg|png|gif|jpeg))/g, 'http://viva.vipstatic.com/uploadfiles/viva-act-static/' + package.name + '/img/$1'))) // 替换图片路径。只处理app.js和style.css。 XXX 请根据实际修改替换的内容     
+    .pipe(gulp.dest(config.dist + '/' + package.name)) 
     .pipe(zip(package.name + '.zip'))
     .pipe(gulp.dest(config.dist));
 });
