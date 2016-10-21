@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/danielxiaowxx/vap-seed#readme",
   "dependencies": {
+    "jquery": "^3.1.1",
     "vue": "^1.0.26",
     "vue-resource": "^0.9.3",
     "lodash-es": "^4.16.2",

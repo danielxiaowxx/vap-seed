@@ -10,7 +10,7 @@ var config = require('./config');
 module.exports = {
   entry: {
     app: path.join(config.src, 'index.js'),
-    vendor: ['vue', 'vue-resource'],
+    vendor: ['vue', 'vue-resource', 'jquery'], // XXX if you don't use jquery, rm it
   },
 
   output: {
