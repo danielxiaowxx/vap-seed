@@ -99,20 +99,20 @@ gulp.task('serve', () => {
 gulp.task('zip', () => {
   var package = require('./package.json');
   var env = process.env.NODE_ENV;                                                                                                                                                                
-  var server = { // XXX 请根据实际情况修改不同环境的静态服务器和提供JSONP接口的服务域名                                                                                                          
-    sit: {                                                                                                                                                                                       
-      static: 'http://viva.vipstatic.com',                                                                                                                                                       
-      jsonp: 'http://viva-api.vip.com'                                                                                                                                                           
-    },                                                                                                                                                                                           
-    uat: {                                                                                                                                                                                       
-      static: 'http://viva.vipstatic.com',                                                                                                                                                       
-      jsonp: 'http://viva-api.vip.com'                                                                                                                                                           
-    },                                                                                                                                                                                           
-    production: {                                                                                                                                                                                
-      static: 'http://viva.vipstatic.com',                                                                                                                                                       
-      jsonp: 'http://viva-api.vip.com'                                                                                                                                                           
-    }                                                                                                                                                                                            
-  }                                                                                                                                                                                              
+  var server = { // XXX 请根据实际情况修改不同环境的静态服务器和提供JSONP接口的服务域名
+    sit: {
+      static: '//viva.vipstatic.com',
+      jsonp: '//viva-api.vip.com'
+    },
+    uat: {
+      static: '//viva.vipstatic.com',
+      jsonp: '//viva-api.vip.com'
+    },
+    production: {
+      static: '//viva.vipstatic.com',
+      jsonp: '//viva-api.vip.com'
+    }
+  }                                                                                                                                                                                            
   var envServer = server[env] || server.sit; 
   return gulp.src(config.dist + '/**/*')
     .pipe(gulpif(file => {                                                                                                                                                                       
