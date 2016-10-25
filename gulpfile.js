@@ -58,6 +58,7 @@ gulp.task('serve', () => {
     browserSync.init({
       server: './dist',
       index: 'index.html',
+      // https: true, 
       port: 3000,
       logLevel: 'debug',
       logPrefix: 'VA',
