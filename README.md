@@ -38,6 +38,11 @@ yo vap:add-comp [component-name]
 npm run release
 ```
 
+window环境请执行以下
+```
+npm run release-win
+```
+
 
 ## 开发人员的工作流程
 

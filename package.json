@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "gulp dev",
     "release": "NODE_ENV=production gulp build && gulp zip",
+    "release-win": "set NODE_ENV=production & gulp build & gulp zip",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
