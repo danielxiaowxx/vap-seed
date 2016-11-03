@@ -96,3 +96,5 @@ import _assign from 'lodash-es/assign';
 ~~9.图片压缩~~
 
 10.sourcemap
+
+11.tree-shacking ( 需要升级webpack到2, preset中删除babel-plugin-transform-es2015-modules-commonjs )

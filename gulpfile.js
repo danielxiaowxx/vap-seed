@@ -75,7 +75,7 @@ gulp.task('serve', () => {
             // 判断是否JSONP
             var urlObj = url.parse(req.url);
             var qsObj = qs.parse(urlObj.query);
-            
+
             if (qsObj.callback) {
               resResult = `${qsObj.callback}(${resResult})`;
             }
@@ -99,7 +99,7 @@ gulp.task('serve', () => {
 
 gulp.task('zip', () => {
   var package = require('./package.json');
-  var env = process.env.NODE_ENV;                                                                                                                                                                
+  var env = process.env.NODE_ENV;
   var server = { // XXX 请根据实际情况修改不同环境的静态服务器和提供JSONP接口的服务域名
     sit: {
       static: '//viva.vipstatic.com',
@@ -113,24 +113,27 @@ gulp.task('zip', () => {
       static: '//viva.vipstatic.com',
       jsonp: '//viva-api.vip.com'
     }
-  }                                                                                                                                                                                            
-  var envServer = server[env] || server.sit; 
+  }
+  var envServer = server[env] || server.sit;
   return gulp.src(config.dist + '/**/*')
-    .pipe(gulpif(file => {                                                                                                                                                                       
-      var fileName = file.path.replace(config.dist + path.sep, '');                                                                                                                              
-      return fileName === 'index.html';                                                                                                                                                          
+    .pipe(gulpif(file => {
+      var fileName = file.path.replace(config.dist + path.sep, '');
+      return fileName === 'index.html';
     }, replace(/=([a-z\.0-9]+\.(js|css))/g, '=' + envServer.static + '/uploadfiles/viva-act-static/' + package.name + '/$1'))) // 替换JS/CSS路径。只处理index.html XXX 请根据实际情况进行修改路径                              
-    .pipe(gulpif(file => {                                                                                                                                                                       
-      var fileName = file.path.replace(config.dist + path.sep, '');                                                                                                                              
-      return fileName.match(/^style\.[a-z0-9]{8}\.css/) || fileName.match(/^app\.[a-z0-9]{8}\.js/);                                                                                              
+    .pipe(gulpif(file => {
+      var fileName = file.path.replace(config.dist + path.sep, '');
+      return fileName.match(/^style\.[a-z0-9]{8}\.css/) || fileName.match(/^app\.[a-z0-9]{8}\.js/);
     }, replace(/img\/([a-zA-Z0-9\-_]+\.(jpg|png|gif|jpeg))/g, envServer.static + '/uploadfiles/viva-act-static/' + package.name + '/img/$1'))) // 替换图片路径。只处理app.js和style.css XXX 请根据实际情况进行修改路径        
-    .pipe(gulpif(file => {                                                                                                                                                                       
-      var fileName = file.path.replace(config.dist + path.sep, '');                                                                                                                              
-      return fileName.match(/^app\.[a-z0-9]{8}\.js/);                                                                                                                                            
+    .pipe(gulpif(file => {
+      var fileName = file.path.replace(config.dist + path.sep, '');
+      return fileName.match(/^app\.[a-z0-9]{8}\.js/);
     }, replace(/http.jsonp\([a-z]{1}\+"(.*?)"\)/, 'http.jsonp("' + envServer.jsonp + '$1")'))) // 替换JSONP请求路径。只处理app.js 
-    .pipe(gulp.dest(config.dist + '/' + package.name)) 
-    .pipe(zip(package.name + '.zip'))
-    .pipe(gulp.dest(config.dist));
+    .pipe(gulp.dest(config.dist + '/pkg/' + package.name)) // 因为需要解压后有目录
+    .on('end', () => {
+      gulp.src(config.dist + '/pkg/**')
+        .pipe(zip(package.name + '.zip'))
+        .pipe(gulp.dest(config.dist));
+    })
 });
 
 gulp.task('build', gulpSequence('clean', ['webpack']));
