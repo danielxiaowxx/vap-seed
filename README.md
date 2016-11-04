@@ -77,24 +77,8 @@ import _assign from 'lodash-es/assign';
 
 ## TODO
 
-~~1. 编译的时候把VUE库独立出来，不要编译进bundle.js里面~~
+- tree-shacking ( 需要升级webpack到2, preset中删除babel-plugin-transform-es2015-modules-commonjs )
 
-2.VUE框架缓存
+- Hot Module Reloading (HMR)
 
-3.watch，增量build
 
-~~4.mock数据~~
-
-5.hot reload
-
-~~6.打点日志~~
-
-7.错误日志
-
-8.font资源文件指纹
-
-~~9.图片压缩~~
-
-10.sourcemap
-
-11.tree-shacking ( 需要升级webpack到2, preset中删除babel-plugin-transform-es2015-modules-commonjs )

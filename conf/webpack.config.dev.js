@@ -41,6 +41,16 @@ module.exports = {
           name: 'img/[name].[ext]'
         },
         include: [config.src].concat(config.vueModules)
+      },
+      {
+        // edit this for additional asset file types
+        test: /\.(eot|svg|ttf|woff|woff2)/,
+        loader: 'url',
+        query: {
+          limit: 1,
+          name: 'font/[name].[ext]'
+        },
+        include: [config.src].concat(config.vueModules)
       }
     ]
   },
@@ -77,5 +87,7 @@ module.exports = {
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
     }),
-  ]
+  ],
+
+  devtool: 'source-map'
 };
