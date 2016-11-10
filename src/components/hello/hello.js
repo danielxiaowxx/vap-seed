@@ -10,11 +10,11 @@ export default {
 
   methods: {
     getHello() {
-      getTestMsg().then(data => {
-        this.remoteMsg += data.json().msg;
+      getTestMsg().then(res => {
+        this.remoteMsg += res.data.msg;
         return getTestName();
-      }).then(data => {
-        this.remoteMsg += ' ' + data.json().name;
+      }).then(res => {
+        this.remoteMsg += ' ' + res.data.name;
       });
     }
   }

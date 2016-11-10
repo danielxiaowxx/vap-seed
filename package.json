@@ -1,6 +1,6 @@
 {
   "name": "vap-seed",
-  "version": "0.0.2",
+  "version": "1.0.3",
   "description": "Activity project with Vue",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
   "dependencies": {
     "jquery": "^3.1.1",
     "vue": "^1.0.26",
-    "vue-resource": "^0.9.3",
+    "vue-resource": "git+https://daniel-dx@github.com/daniel-dx/vue-resource.git",
     "lodash-es": "^4.16.2",
     "va-commonjs": "git+http://daniel.xiao@gitlab.tools.vipshop.com/daniel.xiao/va-commonjs.git",
     "va-component": "git+http://daniel.xiao@gitlab.tools.vipshop.com/daniel.xiao/va-component.git",

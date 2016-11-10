@@ -5,12 +5,194 @@
     <title>Vue</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+
+    <!--resource loading style-->
+    <style>
+        .spinner.fixed-center {
+            position:absolute; 
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        svg.vip-spinner {
+            opacity: 1 !important;
+            -webkit-transition: opacity 0.25s;
+            -moz-transition: opacity 0.25s;
+            transition: opacity 0.25s;
+            display: block;
+            width: 64px;
+            height: 64px
+        }
+
+        @-webkit-keyframes draw {
+            0% {
+                stroke: #f10582;
+                stroke-dashoffset: 500
+            }
+
+            50% {
+                stroke: #f10582;
+                stroke-dashoffset: 300
+            }
+
+            51% {
+                stroke: #d9d9d9;
+                stroke-dashoffset: 500
+            }
+
+            100% {
+                stroke: #d9d9d9;
+                stroke-dashoffset: 300
+            }
+        }
+
+        @-webkit-keyframes shadow {
+            0 {
+                stroke: #d9d9d9
+            }
+
+            49% {
+                stroke: #d9d9d9
+            }
+
+            50% {
+                stroke: #f10582
+            }
+
+            99% {
+                stroke: #f10582
+            }
+
+            100% {
+                stroke: #d9d9d9
+            }
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0);
+                stroke-dashoffset: 99
+            }
+
+            50% {
+                -webkit-transform: rotate(720deg);
+                stroke-dashoffset: 471
+            }
+
+            100% {
+                -webkit-transform: rotate(1080deg);
+                stroke-dashoffset: 99
+            }
+        }
+
+        svg.vip-spinner path,svg.vip-spinner circle {
+            stroke: #d9d9d9;
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            fill: none
+        }
+
+        svg.vip-spinner .circle .rotation {
+            stroke: #f10582;
+            stroke-dasharray: 471;
+            -webkit-transform-origin: 75px 75px 0;
+            -moz-transform-origin: 75px 75px 0;
+            -ms-transform-origin: 75px 75px 0;
+            -o-transform-origin: 75px 75px 0;
+            transform-origin: 75px 75px 0;
+            -webkit-animation: spin 3s linear infinite;
+            -moz-animation: spin 3s linear infinite;
+            animation: spin 3s linear infinite
+        }
+
+        svg.vip-spinner .logo-idle path {
+            stroke: #d9d9d9;
+            stroke-width: 5;
+            -webkit-animation: shadow 3.6s infinite;
+            -moz-animation: shadow 3.6s infinite;
+            animation: shadow 3.6s infinite
+        }
+
+        svg.vip-spinner .logo path {
+            -webkit-animation: draw 3.6s infinite;
+            -moz-animation: draw 3.6s infinite;
+            animation: draw 3.6s infinite;
+            stroke-dasharray: 500
+        }
+
+        svg.vip-spinner .logo path.it {
+            -webkit-animation-delay: 0.5s;
+            -moz-animation-delay: 0.5s;
+            animation-delay: 0.5s
+        }
+
+        svg.vip-spinner .logo path.ib {
+            -webkit-animation-delay: 0.6s;
+            -moz-animation-delay: 0.6s;
+            animation-delay: 0.6s
+        }
+
+        svg.vip-spinner .logo path.p {
+            -webkit-animation-delay: 0.75s;
+            -moz-animation-delay: 0.75s;
+            animation-delay: 0.75s
+        }
+    </style>
 </head>
 
 <body>
+    <!--resources loading animation-->
+    <svg data-role="vip-spinner" class="vip-spinner spinner fixed-center" v-show="isResourceLoading" viewBox="0 0 150 150">
+        <g class="circle">
+            <circle cx="75" cy="75" r="72"></circle>
+            <circle cx="75" cy="75" r="72" class="rotation"></circle>
+        </g>
+        <g class="logo-idle">
+            <path d="M32 62
+            L47 100
+            L62 62
+            M77 49
+            A0.1 0.1, 0 1 1, 80 52
+            A0.1 0.1, 0 1 1, 77 49
+            Z
+            M78 62
+            L78 100
+            M95 113
+            L95 62
+            L95 85
+            A15 15, 0 1 1, 130 78
+            A15 15, 0 1 1, 95 85
+            Z"></path>
+        </g>
+        <g class="logo">
+            <path d="M32 62
+                L47 100
+                L62 62" class="v"></path>
+            <path d="M77 49
+                A0.1 0.1, 0 1 1, 80 52
+                A0.1 0.1, 0 1 1, 77 49
+                Z" class="it"></path>
+            <path d="M78 62
+                L78 100" class="ib"></path>
+            <path d="M95 113
+                L95 62
+                L95 85
+                A15 15, 0 1 1, 130 78
+                A15 15, 0 1 1, 95 85
+                Z" class="p"></path>
+        </g>
+    </svg>
+
     <app></app>
-    <!--XXX just for vip tracker-->
+
+    <!--XXX just for vip-->
     <script defer src="//3rd.vipstatic.com/mars_wap/mars_wap.js"></script>
+    <script defer src="//viva.vipstatic.com/uploadfiles/viva-act-static/assets/js/hercules.js"></script>
 </body>
 
 </html>

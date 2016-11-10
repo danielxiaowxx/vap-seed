@@ -75,6 +75,85 @@ npm run release-win
 import _assign from 'lodash-es/assign';
 ```
 
+## Q & A
+
+- 如何自定义首屏加载提示动画?
+
+修改`src/index.html`中的动画和样式，找到以下注释，根据实际进行修改
+
+```
+<!--resource loading style-->
+
+<!--resources loading animation-->
+```
+
+- 如何自定义异步请求中提示动画？
+
+更换`src/assets/images/loading.gif`动画。
+
+默认是居中显示，如果想修改显示的位置，可在该文件`src/components/App.vue`中修改样式
+
+```
+.loading {
+    position:absolute; 
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+```
+
+- 如何自定义默认的异步请求异常提示？
+
+在`src/components/App.vue`中，在以下地方实现你自己的默认异步请求异常处理行为
+
+```
+} else if (!request.preventDefaultErrorHandler) { // 默认的异常处理，可通过在请求时传入options{preventDefaultErrorHandler: true}来取消该行为
+    alert(response.status + '|' + response.statusText + '|' + response.data);
+}
+```
+
+- 在哪里处理未登录的情况？
+
+在`src/components/App.vue`中，把`alert('未登录');`修改成实际的交互
+
+```
+if (response.status === 401) { // 未登录                           
+    alert('未登录');
+...
+```
+
+- 某些请求想自定义自己的异常提示，不想用默认的异步请求提示，怎么办？
+
+在异步请求时增加`options {preventDefaultErrorHandler: true}`，如下：
+
+```
+export function getTestMsg() {
+  return Vue.http.get('/api/test/getMsg', {preventDefaultErrorHandler: true}).catch(err => {
+    console.log('你可以绕过默认异常处理机制，自己爱昨滴昨滴啦')
+  });
+};
+```
+
+- 如何设置请求超时时间？
+
+在`src/components/App.vue`中，更改以下值
+
+```
+Vue.http.options.timeout = 3 * 1000; // 设置超时时间，单位ms
+```
+
+- 如何将前端异常信息回传回服务器
+
+在`src/index.js`文件的以下位置，把错误信息回传回服务器即可
+
+```
+window.onerror = err => {
+  console.error('>>>', err); // 可将错误日志回传服务器
+}
+```
+
 ## TODO
 
 - tree-shacking ( 需要升级webpack到2, preset中删除babel-plugin-transform-es2015-modules-commonjs )
