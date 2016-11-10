@@ -28,7 +28,7 @@ npm run dev
 ## 如何增加一个component
 
 ```
-yo vap:add-comp [component-name]
+yo vap:add-comp
 ```
 
 
