@@ -6,5 +6,6 @@ module.exports = {
       name: 'Daniel'
     };
   },
-  '/api/test/getMsg': {msg: 'Hello'}
+  '/api/test/getMsg': {msg: 'Hello'},
+  '/api/test/getJSONPTest': {result: 'jsonp result'}
 };

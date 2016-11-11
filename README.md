@@ -66,7 +66,6 @@ npm run release-win
 
 3. 引入第三方组件或工具库时，如果想合并进verdor.js而不是app.js，则需要声明在`webpack.config.dev.js`的`entry.vendor`数组里
 
-
 ## 常用工具库
 
 项目使用了lodash这个最受欢迎的工具库，在使用其方法时，请按需依赖，如：

@@ -7,6 +7,12 @@
   </p>
   <hr/>
   <p>msg: <span class="text-warn">{{ msg }}</span></p>
-  <p>remoteMsg: <span class="text-warn">{{remoteMsg}}</span></p>
-  <button v-on:click="getHello">Click to get remote msg</button>
+  <div>
+    <p>remoteMsg: <span class="text-warn">{{remoteMsg}}</span></p>
+    <button v-on:click="getHello">Click to get remote msg</button>
+  </div>
+  <div>
+   <p>jsonpRes: <span class="text-warn">{{jsonpRes}}</span></p>
+   <button @click="getJSONPTest">Click to get jsonp res</button>
+  </div>
 </div>

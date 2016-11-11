@@ -1,20 +1,27 @@
-import {getTestName, getTestMsg} from '../../common/rest-service';
+import { getTestName, getTestMsg, getJSONPTest } from '../../common/rest-service';
 
 export default {
-  data () {
+  data() {
     return {
       msg: 'Hello daniel',
-      remoteMsg: ''
+      remoteMsg: '',
+      jsonpRes: ''
     }
   },
 
   methods: {
     getHello() {
       getTestMsg().then(res => {
-        this.remoteMsg += res.data.msg;
+        this.$data.remoteMsg += res.data.msg;
         return getTestName();
       }).then(res => {
-        this.remoteMsg += ' ' + res.data.name;
+        this.$data.remoteMsg += ' ' + res.data.name;
+      });
+    },
+    getJSONPTest() {
+      getJSONPTest().then(res => {
+        console.log(res.data);
+        this.$data.jsonpRes = res.data.result;
       });
     }
   }

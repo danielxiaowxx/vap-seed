@@ -32,7 +32,7 @@
                             alert(response.status + '|' + response.statusText + '|' + response.data);
                         }
                     } else {
-                        response.body = JSON.parse(response.body);    
+                        response.body = typeof response.body === 'string' ? JSON.parse(response.body) : response.body;    
                     }
                          
                 });
@@ -48,6 +48,8 @@
             // Don't touch me - component
         }
     }
+
+
 </script>
 
 <style lang="sass">
