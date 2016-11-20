@@ -1,3 +1,7 @@
+## 项目描述
+
+这是一个专用于开发H5活动的种子项目 (在实际生成的项目中, 这里的描述修改成你的H5活动的描述)
+
 
 ## 准备工作
 
@@ -94,7 +98,7 @@ import _assign from 'lodash-es/assign';
 
 ```
 .loading {
-    position:absolute; 
+    position:absolute;
     left: 0;
     right: 0;
     top: 0;
@@ -118,7 +122,7 @@ import _assign from 'lodash-es/assign';
 在`src/components/App.vue`中，把`alert('未登录');`修改成实际的交互
 
 ```
-if (response.status === 401) { // 未登录                           
+if (response.status === 401) { // 未登录
     alert('未登录');
 ...
 ```
