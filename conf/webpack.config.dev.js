@@ -10,7 +10,7 @@ var config = require('./config');
 module.exports = {
   entry: {
     app: path.join(config.src, 'index.js'),
-    vendor: ['vue', 'vue-resource', 'jquery'], // XXX if you don't use jquery, rm it
+    vendor: ['vue', 'vue-resource']
   },
 
   output: {
@@ -84,6 +84,7 @@ module.exports = {
       filename: 'index.html',
       template: path.join(config.src, 'index.html'),
       inject: true,
+      scriptLocationIdentifier: /<\!--script location-->/,
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
     }),

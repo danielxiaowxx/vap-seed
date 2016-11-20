@@ -25,13 +25,12 @@
   },
   "homepage": "https://github.com/danielxiaowxx/vap-seed#readme",
   "dependencies": {
-    "jquery": "^3.1.1",
     "vue": "^1.0.26",
     "vue-resource": "git+https://daniel-dx@github.com/daniel-dx/vue-resource.git",
     "lodash-es": "^4.16.2",
     "va-commonjs": "git+http://daniel.xiao@gitlab.tools.vipshop.com/daniel.xiao/va-commonjs.git",
     "va-component": "git+http://daniel.xiao@gitlab.tools.vipshop.com/daniel.xiao/va-component.git",
-    "va-commonstyle": "git+http://daniel.xiao@gitlab.tools.vipshop.com/daniel.xiao/va-commonstyle.git"   
+    "va-commonstyle": "git+http://daniel.xiao@gitlab.tools.vipshop.com/daniel.xiao/va-commonstyle.git"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.2",
@@ -57,9 +56,9 @@
     "gulp-replace": "^0.5.4",
     "gulp-sequence": "^0.4.6",
     "gulp-zip": "^3.2.0",
-    "gulp-if": "^2.0.1", 
+    "gulp-if": "^2.0.1",
     "html-loader": "^0.4.0",
-    "html-webpack-plugin": "^2.22.0",
+    "html-webpack-plugin": "git+https://daniel-dx@github.com/daniel-dx/html-webpack-plugin.git",
     "imagemin-webpack-plugin": "^1.1.0",
     "map-stream": "0.0.6",
     "node-libs-browser": "^1.0.0",

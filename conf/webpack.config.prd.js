@@ -58,6 +58,7 @@ module.exports = {
       filename: 'index.html',
       template: path.join(config.src, 'index.html'),
       inject: true,
+      scriptLocationIdentifier: /<\!--script location-->/,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
