@@ -1,6 +1,6 @@
 {
   "name": "vap-seed",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Activity project with Vue",
   "main": "index.js",
   "scripts": {
