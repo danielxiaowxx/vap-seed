@@ -19,6 +19,8 @@
     import Hello from './hello/index.vue'
     // Don't touch me - import
 
+    var mo = function(e){e.preventDefault();};
+
     export default {
         ready() {
 
@@ -59,6 +61,15 @@
                 isLoading: false,
                 isScreenHorizontal: false
             }
+        },
+        watch: {
+          isScreenHorizontal(val) {
+            if (val) {
+              document.addEventListener("touchmove", mo, false); //禁止页面滑动
+            } else {
+              document.removeEventListener("touchmove", mo); //禁止页面滑动
+            }
+          }
         },
         components: {
             Hello,
