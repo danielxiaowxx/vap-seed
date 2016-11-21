@@ -99,7 +99,7 @@
         }
         .screen-horizontal-tip {
           display: none;
-          position: absolute;
+          position: fixed;
           width: 100%;
           top:0;
           bottom: 0;
@@ -123,7 +123,7 @@
           }
         }
         .loading {
-          position:absolute;
+          position:fixed;
           left: 0;
           right: 0;
           top: 0;
