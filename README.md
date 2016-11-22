@@ -155,7 +155,7 @@ Vue.http.options.timeout = 3 * 1000; // 设置超时时间，单位ms
 
 ```
 window.onerror = err => {
-  console.error('>>>', err); // 可将错误日志回传服务器
+  ...
 }
 ```
 

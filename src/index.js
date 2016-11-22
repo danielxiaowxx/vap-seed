@@ -19,6 +19,13 @@ new Vue({
   }
 });
 
-window.onerror = err => {
-  console.error('>>>', err); // 可将错误日志回传服务器
+
+window.onerror = (msg, url, lineNo, columnNo, error) => {
+  var msg = {
+    msg: msg,
+    stack: error.stack,
+    url: location.href,
+    ua: navigator.userAgent
+  };
+  console.error('>>>', JSON.stringify(msg)); // 可将错误日志回传服务器
 };
