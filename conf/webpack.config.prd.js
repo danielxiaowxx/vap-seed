@@ -30,7 +30,7 @@ module.exports = {
       rem: true,
       remToPxRatio: 1000,
       spritesmith: { // 图片间有一定的间距才不会出现有些分辨率下图片显示超出的问题
-        padding: 20
+        padding: 10
       },
       filterBy: image => {
         if (image.url.indexOf('sprite-icons') === -1) {

@@ -8,6 +8,7 @@
     width: rem($w);
     height: rem($h);
     background-size: rem($w) rem($h);
+    background-repeat: no-repeat;
     display: inline-block;
   }
 
