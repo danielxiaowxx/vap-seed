@@ -35,8 +35,8 @@ module.exports = {
         test: /\.(png|jpg|gif)$/,
         loader: 'url',
         query: {
-          // inline files smaller then 10kb as base64 dataURL
-          limit: 10000,
+          // inline files smaller then 1kb as base64 dataURL
+          limit: 1000,
           // fallback to file-loader with this naming scheme
           name: 'img/[name].[ext]'
         },

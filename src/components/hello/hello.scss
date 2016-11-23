@@ -5,11 +5,10 @@
   color: #fff;
 
   @mixin icon($w, $h) {
-    width: $w;
-    height: $h;
+    width: rem($w);
+    height: rem($h);
+    background-size: rem($w) rem($h);
     display: inline-block;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
   }
 
   padding: rem(8px);
@@ -18,17 +17,24 @@
     width: rem(400px);
     height: rem(400px);
     background: url('../../assets/images/logo.png') no-repeat;
-    background-size: 100% 100%;
+    background-size: rem(400px) rem(400px);
   }
 
   .icon-1 {
-    background-image: url('../../assets/images/sprite-icons/icon1.gif');
-    @include icon(rem(128px), rem(127px));
+    @include icon(128px, 127px);
+    background-image: url('../../assets/images/sprite-icons/sprite-1/icon1.gif');
   }
-
   .icon-2 {
-    background-image: url('../../assets/images/sprite-icons/icon2.gif');
-    @include icon(rem(128px), rem(128px));
+    @include icon(128px, 128px);
+    background-image: url('../../assets/images/sprite-icons/sprite-1/icon2.gif');
+  }
+  .icon-3 {
+    @include icon(69px, 64px);
+    background-image: url('../../assets/images/sprite-icons/sprite-common/icon3.png');
+  }
+  .icon-4 {
+    @include icon(70px, 64px);
+    background-image: url('../../assets/images/sprite-icons/sprite-common/icon4.png');
   }
 
   .text-warn {

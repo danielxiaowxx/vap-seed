@@ -1,9 +1,10 @@
 var path = require('path');
+var _ = require('lodash');
 var webpack = require('webpack');
 var postcssSprites = require('postcss-sprites');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ImageminPlugin = require('imagemin-webpack-plugin').default
+var ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 var config = require('./config');
 
@@ -26,11 +27,21 @@ module.exports = {
       stylesheetPath: path.join(config.src, 'a/b'), // 这里为了让编译的时候样式能找到图片的正确路径，无奈，暂不深究
       spritePath: path.join(config.src, 'assets/images'),
       relativeTo: true,
+      rem: true,
+      remToPxRatio: 1000,
       filterBy: image => {
         if (image.url.indexOf('sprite-icons') === -1) {
           return Promise.reject();
         }
         return Promise.resolve();
+      },
+      groupBy: function(image) {
+        var spriteName = _.get(image.url.match(/sprite\-icons\/(.*?)\//), '[1]');
+        if (!spriteName) {
+          return Promise.reject();
+        }
+
+        return Promise.resolve(spriteName);
       }
     })]
   },
