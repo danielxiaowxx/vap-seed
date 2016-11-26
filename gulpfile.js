@@ -122,7 +122,7 @@ gulp.task('zip', () => {
     }, replace(/=([a-z\.0-9]+\.(js|css))/g, '=' + envServer.static + '/uploadfiles/viva-act-static/' + package.name + '/$1'))) // 替换JS/CSS路径。只处理index.html XXX 请根据实际情况进行修改路径
     .pipe(gulpif(file => {
       var fileName = file.path.replace(config.dist + path.sep, '');
-      return fileName.match(/^style\.[a-z0-9]{8}\.css/) || fileName.match(/^app\.[a-z0-9]{8}\.js/);
+      return fileName.match(/^style\.[a-z0-9]{8}\.css/) || fileName.match(/^app\.[a-z0-9]{8}\.js/) || fileName === 'index.html';
     }, replace(/img\/([a-zA-Z0-9\-_]+\.(jpg|png|gif|jpeg))/g, envServer.static + '/uploadfiles/viva-act-static/' + package.name + '/img/$1'))) // 替换图片路径。只处理app.js和style.css XXX 请根据实际情况进行修改路径
     .pipe(gulpif(file => {
       var fileName = file.path.replace(config.dist + path.sep, '');

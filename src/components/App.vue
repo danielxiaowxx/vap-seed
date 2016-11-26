@@ -38,7 +38,10 @@
 
             // 拦截请求
             Vue.http.interceptors.push((request, next) => {
-                this.$data.isLoading = true;
+
+                if (!request.noLoadingTip) {
+                  this.$data.isLoading = true;
+                }
 
                 next(response => {
                     this.$data.isLoading = false;

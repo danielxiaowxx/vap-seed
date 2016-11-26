@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var postcssSprites = require('postcss-sprites');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -38,7 +37,7 @@ module.exports = {
           // inline files smaller then 1kb as base64 dataURL
           limit: 1000,
           // fallback to file-loader with this naming scheme
-          name: 'img/[name].[ext]'
+          name: 'img/[name].[hash:8].[ext]'
         },
         include: [config.src].concat(config.vueModules)
       },
