@@ -97,7 +97,9 @@ module.exports = {
       },
       svgo: {
       },
-      pngquant: null, // pngquant is not run unless you pass options here
+      pngquant: {
+        floyd: 1
+      },
       plugins: []
     })
   ]
