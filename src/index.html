@@ -154,6 +154,8 @@
           htmlEl.style.fontSize = 1000 * (clientWidth / 750) + 'px'; // 以宽为750px，font-size为1000px为基准。设为1000是为了让算出的font-size值为有效的值，即>=1
         };
 
+        resizeHandler();
+
         if (!window.addEventListener) return;
         window.addEventListener(resizeEvt, resizeHandler, false);
         document.addEventListener('DOMContentLoaded', resizeHandler, false);
