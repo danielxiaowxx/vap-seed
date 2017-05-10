@@ -9,6 +9,8 @@ var webpack = require('webpack');
 var notify = require('gulp-notify');
 var replace = require('gulp-replace');
 var gulpSequence = require('gulp-sequence');
+var url = require('url');
+var querystring = require('querystring');
 var browserSync = require('browser-sync').create();
 
 var config = require('./conf/config');
@@ -67,22 +69,32 @@ gulp.task('serve', () => {
         return {
           route: route,
           handle: (req, res) => {
+            var body = [];
+            req.on('data', function(chunk) {
+              body.push(chunk);
+            }).on('end', function() {
+              body = JSON.parse(Buffer.concat(body).toString() || '{}');
+              var query = querystring.parse(url.parse(req.url).query);
+              var params = Object.assign(body, query);
 
-            var resResult = '';
-            var resData = typeof mockConfig[route] === 'function' ? mockConfig[route]() : mockConfig[route];
-            resResult = typeof resData === 'string' ? resData : JSON.stringify(resData);
+              var resResult = '';
+              var resData = typeof mockConfig[route] === 'function' ? mockConfig[route](params) : mockConfig[route];
+              resResult = typeof resData === 'string' ? resData : JSON.stringify(resData);
 
-            // 判断是否JSONP
-            var urlObj = url.parse(req.url);
-            var qsObj = qs.parse(urlObj.query);
+              // 判断是否JSONP
+              var urlObj = url.parse(req.url);
+              var qsObj = qs.parse(urlObj.query);
 
-            if (qsObj.callback) {
-              resResult = `${qsObj.callback}(${resResult})`;
-            }
+              if (qsObj.callback) {
+                resResult = `${qsObj.callback}(${resResult})`;
+              }
 
-            res.write(resResult);
-            res.end();
-            return;
+              res.write(resResult);
+              res.end();
+              return;
+
+            });
+
           }
         }
       })
