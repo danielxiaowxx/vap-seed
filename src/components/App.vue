@@ -84,8 +84,8 @@
 </script>
 
 <style lang="sass">
-    @import "~va-commonstyle/utils.scss";
-    @import "~va-commonstyle/normalize.scss";
+    @import "../common/style/utils.scss";
+    @import "../common/style/normalize.scss";
 
     /* reset */
     body {

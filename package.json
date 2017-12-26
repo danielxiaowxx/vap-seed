@@ -25,10 +25,9 @@
   },
   "homepage": "https://github.com/danielxiaowxx/vap-seed#readme",
   "dependencies": {
-    "vue": "^1.0.26",
-    "vue-resource": "git+https://daniel-dx@github.com/daniel-dx/vue-resource.git",
     "lodash-es": "^4.16.2",
-    "va-commonstyle": "git+http://daniel.xiao@gitlab.tools.vipshop.com/daniel.xiao/va-commonstyle.git"
+    "vue": "^1.0.26",
+    "vue-resource": "git+https://daniel-dx@github.com/daniel-dx/vue-resource.git"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.2",
