@@ -28,8 +28,6 @@
     "vue": "^1.0.26",
     "vue-resource": "git+https://daniel-dx@github.com/daniel-dx/vue-resource.git",
     "lodash-es": "^4.16.2",
-    "va-commonjs": "git+http://daniel.xiao@gitlab.tools.vipshop.com/daniel.xiao/va-commonjs.git",
-    "va-component": "git+http://daniel.xiao@gitlab.tools.vipshop.com/daniel.xiao/va-component.git",
     "va-commonstyle": "git+http://daniel.xiao@gitlab.tools.vipshop.com/daniel.xiao/va-commonstyle.git"
   },
   "devDependencies": {
@@ -62,7 +60,7 @@
     "imagemin-webpack-plugin": "^1.1.0",
     "map-stream": "0.0.6",
     "node-libs-browser": "^1.0.0",
-    "node-sass": "^3.3.2",
+    "node-sass": "^4.7.2",
     "postcss-loader": "^0.8.0",
     "postcss-sprites": "git+https://daniel-dx@github.com/daniel-dx/postcss-sprites.git",
     "rimraf": "~2.5.0",
