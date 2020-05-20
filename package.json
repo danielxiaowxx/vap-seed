@@ -72,5 +72,8 @@
     "vue-loader": "^8.0.1",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.1"
+  },
+  "engines": {
+    "node": "=10"
   }
 }
